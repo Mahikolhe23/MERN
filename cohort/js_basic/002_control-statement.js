@@ -5,7 +5,7 @@ if(num > 10){
     console.log(num+" is less than 10")
 }
 
-
+//q
 const readline = require('readline');
 
 const rl = readline.createInterface({
