@@ -47,11 +47,11 @@ for (let i = 1; i <= 10; i++) {
 //Question-8: WAP that use the break statement to exit the loop when the counter reaches 5. Also, use continue to skip printing the value 3 ( Note : Loop Starts from 0).
 let p = 1;
 while (p <= 10) {
-  if (p === 3) {
-    continue;
+  if (p == 3) {
     p++;
+    continue;
   }
-  if (p === 5) {
+  if (p == 5) {
     break;
   }
   console.log(p);
@@ -66,10 +66,27 @@ for (let i = 1; i <= 30; i++) {
   if (i % 5 == 0) {
     console.log("Buzz");
   }
-  if (i % 3 == 0 || i % 5 == 0) {
+  if (i % 3 == 0 && i % 5 == 0) {
     console.log("FizzBuzz");
   }
 }
 
 //Question-10: WAP to identify and log prime numbers within a given range.
-function
+const num1 = 1;
+const num2 = 20;
+function primeNumbers(num1, num2) {
+  for (let i = num1; i <= num2; i++) {
+    if (isPrime(i)) {
+      console.log(i);
+    }
+  }
+}
+function isPrime(num) {
+  for (let i = 2; i < num / 2; i++) {
+    if (num % i == 0) {
+      return false;
+    }
+  }
+  return true;
+}
+primeNumbers(num1, num2);
