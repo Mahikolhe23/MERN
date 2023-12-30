@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To Do Application</title>
+</head>
+<script>
+    let id = 1;
+    function markAsDone(toDoId) {
+        const parent = document.getElementById(toDoId)
+        parent.children[2].innerHTML = "Done!"
+    }
+    function AddToDo() {
+        const title = document.getElementById('title').value
+        const description = document.getElementById('description').value
+
+        const innerDiv1 = document.createElement('div')
+        innerDiv1.innerHTML = title
+
+        const innerDiv2 = document.createElement('div')
+        innerDiv2.innerHTML = description
+
+        const button = document.createElement('button')
+        button.innerHTML = "Mark as Done"
+        button.setAttribute("onClick", `markAsDone(${id})`)
+
+        const outerDiv = document.createElement('div')
+        outerDiv.setAttribute("id", id++)
+        outerDiv.appendChild(innerDiv1)
+        outerDiv.appendChild(innerDiv2)
+        outerDiv.appendChild(button)
+
+        document.getElementById('container').appendChild(outerDiv)
+    }
+</script>
+
+<body>
+    <div>
+        <input type="text" id="title" placeholder="title"> <br> <br>
+        <input type="text" id="description" placeholder="description" id=""> <br><br>
+        <button onclick="AddToDo()">Add To Do</button>
+        <div id="container"></div>
+    </div>
+
+</body>
+
+</html>

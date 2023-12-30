@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Intrest cal</title>
+</head>
+<script>
+    async function Calculate() {
+        const rate = parseInt(document.getElementById('rate').value)
+        const year = parseInt(document.getElementById('year').value)
+        const Amount = parseInt(document.getElementById('Amount').value)
+        const sum = await fetch("http://localhost:3000/calculate?rate=" + rate + "&year=" + year + "&Amount=" + Amount)
+        const response = await sum.text()
+        document.getElementById('final').innerHTML = response
+    }
+</script>
+
+<body>
+    <input type="text" id="rate" placeholder="Enter Intrest Rate" /><br><br>
+    <input type="text" id="year" placeholder="Enter No. Of Year" /><br><br>
+    <input type="text" id="Amount" placeholder="Enter Amount" /><br><br>
+    <button id="total" onclick="Calculate()">Calculate Total</button> 
+    <div id="final"></div>
+</body>
+
+</html>
