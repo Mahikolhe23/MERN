@@ -11,7 +11,7 @@ app.use(express.json())
 app.post('/todo', async (req, res) => {
     const createPayLoad = req.body
     const parsedPayLoad = createTodo.safeParse(createPayLoad)
-    
+
     if (!parsedPayLoad.success) {
         res.status(411).json({
             msg: "You sent wrong inputs"
@@ -44,14 +44,14 @@ app.put('/completed', async (req, res) => {
         })
         return;
     }
-
+    console.log(req.body._id)
     await todo.updateOne({
-        _id: req.body.id
+        _id: req.body._id
     }, {
         completed: true
     })
     res.json({
-        msg: "Todo markes as done"
+        msg: "Todo marks as done"
     })
 })
 
