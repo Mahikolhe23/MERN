@@ -1,16 +1,26 @@
+import { useEffect } from 'react'
 import { useState } from 'react'
-import './App.css'
+
 
 function App() {
+  const [inputValue, setInputValue] = useState(1)
+  const [counter, setCounter] = useState(0)
+
+  let count = 0
+  for (let i = 0; i <= inputValue; i++) {
+    count += i
+  }
+
   return <div>
-    <CardWrapper >
-      hi there
-    </CardWrapper>
+    <input type="number"
+      onChange={(e) => setInputValue(e.target.value)} placeholder='Find the Sum from 1 to n' />
+    <div>Sum from 1 to {inputValue} is {count}</div>
+    <button onClick={() => {
+      setCounter(counter + 1)
+    }}>Counter {counter}</button>
   </div>
 }
 
-function CardWrapper({ children }) {
-  return <div style={{ border: "2px solid black", padding: 10 }}>{children}</div>
-}
+
 
 export default App
