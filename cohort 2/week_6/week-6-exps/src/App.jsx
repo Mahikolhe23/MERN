@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { useEffect, useMemo } from 'react'
 import { useState } from 'react'
 
 
@@ -6,10 +6,12 @@ function App() {
   const [inputValue, setInputValue] = useState(1)
   const [counter, setCounter] = useState(0)
 
-  let count = 0
-  for (let i = 0; i <= inputValue; i++) {
-    count += i
-  }
+  let count = useMemo(() => {
+    let count = 0
+    for (let i = 0; i <= inputValue; i++) {
+      count += i
+    }
+  }, [inputValue])
 
   return <div>
     <input type="number"
