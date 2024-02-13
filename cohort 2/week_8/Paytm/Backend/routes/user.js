@@ -1,14 +1,14 @@
 const express = require('express')
 const router = express.Router()
-const zod = require('./zod')
+const { zodSchema } = require('./zod')
 const jwt = require('jsonwebtoken')
 const { User, Account } = require('../db')
 const JWT_SECRET = require('./config')
 const { authMiddleware } = require('./middleware')
 
-app.post('/signup', async (req, res) => {
+router.post('/signup', async (req, res) => {
     const body = req.body
-    const { success } = zod.User.safeParse(body)
+    const { success } = zodSchema.safeParse(body)
     if (!success) {
         return res.json({
             message: "Email already taken / Incorrect inputs"
@@ -46,7 +46,7 @@ app.post('/signup', async (req, res) => {
     })
 })
 
-app.post('/signin', (req, res) => {
+router.post('/signin', (req, res) => {
     const username = req.body.username
     const password = req.body.password
     const user = User.findOne({
@@ -66,14 +66,8 @@ app.post('/signin', (req, res) => {
     })
 })
 
-const updateBody = zod.object({
-    password: zod.string().optional(),
-    firstname: zod.string().optional(),
-    lastname: zod.string().optional()
-})
-
-app.put('/update', authMiddleware, async (req, res) => {
-    const { success } = updateBody.safeParse(req.body)
+router.put('/update', authMiddleware, async (req, res) => {
+    const { success } = zodSchema.safeParse(req.body)
     if (!success) {
         res.status(411).json({
             message: "Error while updating information"
@@ -87,7 +81,7 @@ app.put('/update', authMiddleware, async (req, res) => {
     })
 })
 
-app.get('/bulk', async (req, res) => {
+router.get('/bulk', async (req, res) => {
     const filter = req.query.filter || ""
     const users = await User.find({
         $or: [{

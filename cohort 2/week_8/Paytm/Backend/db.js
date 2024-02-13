@@ -2,7 +2,7 @@ const mongo = require('mongoose')
 
 mongo.connect('mongodb+srv://mkolhe23:esWCBcBghKUG42r9@cluster0.ggnczko.mongodb.net/paytm')
 
-const userSchema = new mongo.Schema({
+const userSchema = mongo.Schema({
     FirstName: String,
     LastName: String,
     UserName: String,
